@@ -60,7 +60,7 @@ public class SpeechToTextInterface {
 			}
 		});
 		resultArea = new JTextArea ();
-		resultArea.setPreferredSize (new Dimension (200,300));
+		resultArea.setPreferredSize (new Dimension (500,500));
 		JPanel p = new JPanel (new GridBagLayout ());
 		GridBagConstraints c = new GridBagConstraints ();
 		c.gridx = 0;
@@ -97,7 +97,8 @@ public class SpeechToTextInterface {
 		flacEncoder.encode(inputFile, outputFile);
 
 		Utterance u = stt.getUtterance (FLAC_FILE);
-		resultArea.setText (resultArea.getText () + u.text+"\n");
+		inputFile.delete ();
+		resultArea.setText (resultArea.getText () + u.text+", confidence: "+u.confidence+"\n");
 
 	}
 
