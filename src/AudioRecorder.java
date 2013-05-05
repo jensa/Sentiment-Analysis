@@ -68,7 +68,7 @@ public class AudioRecorder extends JFrame{
     new AudioRecorder();
   }//end main
 
-  public AudioRecorder(){//constructor
+  public AudioRecorder(){
     captureBtn.setEnabled(true);
     stopBtn.setEnabled(false);
 
