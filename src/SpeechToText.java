@@ -13,17 +13,6 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class SpeechToText {
 	
-	static class Utterance{
-		String text;
-		double confidence;
-		
-		public Utterance (String t, double c){
-			text = t;
-			confidence = c;
-		}
-		
-	}
-	
 	public Utterance getUtterance (String filename){
 		InputStream is;
 		try {
@@ -64,8 +53,8 @@ public class SpeechToText {
 	      }
 	      rd.close();
 	      String responseString = response.toString ();
-	      String utterance = responseString.substring (responseString.indexOf ("utterance:")+3, responseString.indexOf ("confidence")-3);
-	      String confidence = responseString.substring (responseString.indexOf ("confidence:")+2, responseString.indexOf ("}]}"));
+	      String utterance = responseString.substring (responseString.indexOf ("utterance")+12, responseString.indexOf ("confidence")-3);
+	      String confidence = responseString.substring (responseString.indexOf ("confidence")+12, responseString.indexOf ("}]}")-1);
 	      double conf = Double.parseDouble (confidence);
 	      return (new Utterance (utterance, conf));
 	}

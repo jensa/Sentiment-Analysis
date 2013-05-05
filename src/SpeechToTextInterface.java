@@ -12,12 +12,14 @@ import javax.swing.JTextArea;
 
 public class SpeechToTextInterface {
 	JTextArea resultArea;
+	SpeechToText stt;
 	
 	public static void main(String[] args){
 		new SpeechToTextInterface ().buildGUI ();
 	}
 
 	private void buildGUI () {
+		stt = new SpeechToText ();
 		JFrame frame = new JFrame ();
 		frame.setSize (600, 800);
 		JButton record = new JButton ("Record");
@@ -61,7 +63,8 @@ public class SpeechToTextInterface {
 	}
 	
 	public void stopRecording () {
-		// TODO Auto-generated method stub
+		Utterance u = stt.getUtterance ("C:\\googletest.flac");
+		resultArea.setText (resultArea.getText () + u.text+"\n");
 		
 	}
 	
