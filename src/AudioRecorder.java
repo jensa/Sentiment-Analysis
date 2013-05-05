@@ -155,7 +155,7 @@ public class AudioRecorder extends JFrame{
   // allowable parameter values, which are shown
   // in comments following the declarations.
   private AudioFormat getAudioFormat(){
-    float sampleRate = 8000.0F;
+    float sampleRate = 44100.0F;
     //8000,11025,16000,22050,44100
     int sampleSizeInBits = 16;
     //8,16
