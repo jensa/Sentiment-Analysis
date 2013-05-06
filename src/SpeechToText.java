@@ -16,10 +16,11 @@ public class SpeechToText {
 	private long fileSize;
 	
 	public Utterance getUtterance (File file){
-		return getUtterance (file, 44100);
+		
+		return getUtterance (file, AudioFileFinderOuter.figureOutFLACBitrate (file));
 	}
 
-	public Utterance getUtterance (File file, int rate){
+	public Utterance getUtterance (File file, long rate){
 		InputStream is;
 		fileSize = file.length ();
 		try {
@@ -32,7 +33,7 @@ public class SpeechToText {
 	}
 	
 
-	public Utterance getUtterance (InputStream audioInput, int rate) throws IOException{
+	public Utterance getUtterance (InputStream audioInput, long rate) throws IOException{
 		
 		int numChunks = (int) Math.floor ((fileSize / MAX_BYTES_IN_REQUEST))+1;
 		double[] confidences = new double[numChunks];
