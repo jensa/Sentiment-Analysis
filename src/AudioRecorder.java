@@ -16,8 +16,8 @@ public class AudioRecorder {
 	public File outputFLAC;
 	
 	public AudioRecorder (){
-		outputWav = new File ("recordings\\audio.wav");
-		outputFLAC = new File ("recordings\\audio.flac");
+		outputWav = new File ("recordings/audio.wav");
+		outputFLAC = new File ("recordings/audio.flac");
 	}
 	
 	public void captureAudio(){

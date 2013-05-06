@@ -11,11 +11,11 @@ import javaFlacEncoder.FLAC_FileEncoder;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-
 
 public class SpeechToTextInterface {
 	SpeechToText stt = new SpeechToText ();
@@ -24,6 +24,7 @@ public class SpeechToTextInterface {
 
 	private JButton stopRecording;
 	private JButton record;
+	private JButton audioFolder;
 	private JTextArea resultArea;
 
 	public static void main(String[] args){
@@ -55,30 +56,61 @@ public class SpeechToTextInterface {
 				stopRecording ();
 			}
 		});
+		audioFolder = new JButton ("Analyse folder");
+		audioFolder.addActionListener (new ActionListener (){
+
+			@Override
+			public void actionPerformed (ActionEvent e) {
+				new Thread (new FolderAnalyser ()).start ();
+			}
+
+		});
 		resultArea = new JTextArea ();
+		resultArea.setLineWrap (true);
+		resultArea.setWrapStyleWord (true);
 		JScrollPane scrollPane = new JScrollPane (resultArea);
 		scrollPane.setPreferredSize (new Dimension (400,400));
 		JPanel p = new JPanel (new GridBagLayout ());
 		GridBagConstraints c = new GridBagConstraints ();
 		c.gridx = 0;
 		c.gridy = 0;
-		c.fill = GridBagConstraints.HORIZONTAL;
 		p.add (stopRecording, c);
-
+		
+		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx++;
 		p.add (record, c);
+		
+		c.gridx++;
+		p.add (audioFolder);
 
 		c.gridy++;
-		c.gridx--;
+		c.gridx-=2;
 		c.fill = GridBagConstraints.HORIZONTAL;
-		c.gridwidth = 2;
+		c.gridwidth = 3;
 		p.add (scrollPane, c);
 
 		frame.add (p);
 		frame.pack ();
 		frame.setVisible (true);
+	}
+	
+	private class FolderAnalyser implements Runnable {
 
-
+		@Override
+		public void run () {
+			JFileChooser fc = new JFileChooser ();
+			fc.setFileSelectionMode (JFileChooser.DIRECTORIES_ONLY);
+			int option = fc.showOpenDialog (audioFolder);
+			if(option != JFileChooser.APPROVE_OPTION)
+				return;
+			File dir = fc.getSelectedFile();
+			for (File f : dir.listFiles ()){
+				if (f.isFile ()){
+					if (f.getName ().contains ("flac"))
+						processFLACAudioFile (f);
+				}
+			}
+		}
 	}
 
 	public void stopRecording () {
@@ -91,35 +123,39 @@ public class SpeechToTextInterface {
 		stopRecording.setEnabled(true);
 		audio.captureAudio();
 	}
+	
+	private void processFLACAudioFile (File f){
+		String analysing = "Analysing file "+f.getName ()+"...";
+		resultArea.append (analysing);
+		Utterance u = stt.getUtterance (f);
+		if (u == null){
+			System.err.println ("Did not get an utterance");
+			return;
+		}
+		double[] sentiments = analyser.getSentiment (u);
+		if (sentiments == null){
+			resultArea.append (analyser.ERROR+"\n");
+			return;
+		}
+		resultArea.setText (resultArea.getText ().substring (0, resultArea.getText ().length ()-analysing.length ()));
+		StringBuilder text = new StringBuilder (u.text+"\n-----------------\nSENTIMENTS:\n");
+		for (int i=0;i< analyser.sentimentNames.length;i++){
+			text.append (analyser.sentimentNames[i]+": "+sentiments[i]+"\n"); 
+		}
+		text.append ("----------------------------\n");
+		resultArea.append (text.toString ());
+	}
 
-	class PostProcesser implements Runnable{
+	private class PostProcesser implements Runnable{
 		@Override
 		public void run () {
 			stopRecording.setEnabled(false);
-			String analysing = "Analysing...";
-			resultArea.append (analysing);
-		
 			FLAC_FileEncoder flacEncoder = new FLAC_FileEncoder();
 			flacEncoder.encode(audio.outputWav, audio.outputFLAC);
 
-			Utterance u = stt.getUtterance (audio.outputFLAC);
-			audio.outputWav.delete ();
-			if (u == null)
-				return;
-			double[] sentiments = analyser.getSentiment (u);
-			if (sentiments == null){
-				resultArea.setText (resultArea.getText ()+analyser.ERROR+"\n");
-				return;
-			}
-			resultArea.setText (resultArea.getText ().substring (0, resultArea.getText ().length ()-analysing.length ()));
-			StringBuilder text = new StringBuilder (u.text+"\n-----------------\nSENTIMENTS:\n");
-			for (int i=0;i< analyser.sentimentNames.length;i++){
-				text.append (analyser.sentimentNames[i]+": "+sentiments[i]+"\n"); 
-			}
-			text.append ("----------------------------\n");
-			resultArea.append (text.toString ());
+			processFLACAudioFile (audio.outputFLAC);
 			record.setEnabled(true);
-			
+			audio.outputWav.deleteOnExit ();
 		}
 	}
 	
