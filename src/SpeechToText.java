@@ -13,10 +13,10 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class SpeechToText {
 	
-	public Utterance getUtterance (String filename){
+	public Utterance getUtterance (File file){
 		InputStream is;
 		try {
-			is = new FileInputStream (filename);
+			is = new FileInputStream (file);
 			return getUtterance (is);
 		} catch (IOException e) {
 			e.printStackTrace();
