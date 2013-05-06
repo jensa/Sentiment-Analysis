@@ -37,20 +37,43 @@ Petter Salminen <petsal@kth.se>}
 %\listoftables
 \newpage
 \begin{abstract}
-Your abstract goes here...
+Text goes here...
 
 \end{abstract}
 
 \newpage
 \section{Background}
+Technology is ever moving forward. We're always looking for new ways to interact with your systems and devices. One of these ways to input information to computers would be by natural speech, which still is quite flimsy and hard for computers to analyze. 
+
+With most of our media still being in form of sound, such  as web-radio, and television. It is hard to analyze all the information being run around on this media. 
+
+That is why our mission is to make an experimental program that can transcribe speech and analyze it for trends. For example, this can be used to recognize branding recognition from shows.
+
+This could be very interesting for different companies that care to know how their brand is doing out on the world. To be able to find automatically information in the wast sea of digital audio/video media is a very challenging problem.
+
+
 
 \section{Related Work}
+\subsection{Speech-to-Text}
+Some small history and stuff about speech-to-text.
+
+\subsection{Text attitude}
+To be able to find an general opinion or attitude from a snippet of text.
 
 \section{Method}
+Our solution for this problem consists of not trying to invent the wheel, but trying to use different more-or-less complete solutions for the different steps and stitch then together into our own framework.
+
+First and foremost we have an audio file, which we will send to Google speech API, which will give us a fair caption of the given sound segment.
+
+This text we can then search for given brands or other point of interests, and then send this text for textual attitude analyzing using an web API provided by our mentor at Gavagai.
+
+From here we will get an score, of which we can show the user what kind of attitude the speech had. 
 
 \section{Results}
 
+
 \section{Discussion}
+
 
 \newpage
 \begin{thebibliography}{9}
