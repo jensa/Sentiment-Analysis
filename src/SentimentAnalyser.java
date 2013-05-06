@@ -13,12 +13,16 @@ import javax.net.ssl.HttpsURLConnection;
 public class SentimentAnalyser {
 	public final int[] sentimentPoles = {29, 40, 41, 42, 50 };
 	public final String[] sentimentNames = {"Sexy", "Violence", "Positive", "Negative", "Uncertain" };
+	public final String ERROR = "Server error!";
 	
 	private final String APIURL = "https://ethersource.gavagai.se/ethersource/rest/textPolarization?apiKey=zeFAXe8pl0et-MwQ&";
 	
 	
 	public double[] getSentiment (Utterance u){
-		return parseJSON (getSentimentJSON (u.text.replaceAll ("#", "")));
+		String sentimentJSON = getSentimentJSON (u.text.replaceAll ("#", ""));
+		if (sentimentJSON.equals (ERROR))
+			return null;
+		return parseJSON (sentimentJSON);
 	}
 	
 	private String getSentimentJSON (String query){
@@ -49,7 +53,8 @@ public class SentimentAnalyser {
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			return ERROR;
 		}
 		return response;
 	}

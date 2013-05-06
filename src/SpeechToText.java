@@ -46,6 +46,9 @@ public class SpeechToText {
 	      BufferedReader reader = new BufferedReader(new InputStreamReader(is));
 	      String responseString = reader.readLine ();
 	      reader.close ();
+	      if (!responseString.contains ("utterance")){
+	    	  return null;
+	      }
 	      String utterance = responseString.substring (responseString.indexOf ("utterance")+12, responseString.indexOf ("confidence")-3);
 	      String confidence = responseString.substring (responseString.indexOf ("confidence")+12, responseString.indexOf ("}]}")-1);
 	      double conf = Double.parseDouble (confidence);

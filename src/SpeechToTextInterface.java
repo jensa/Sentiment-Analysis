@@ -95,26 +95,7 @@ public class SpeechToTextInterface {
 	}
 
 	public void stopRecording () {
-		record.setEnabled(true);
-		stopRecording.setEnabled(false);
-		targetDataLine.stop();
-		targetDataLine.close();
-
-		FLAC_FileEncoder flacEncoder = new FLAC_FileEncoder();
-		File inputFile = new File(OUTPUT_WAV);
-		File outputFile = new File(FLAC_FILE);
-		flacEncoder.encode(inputFile, outputFile);
-
-		Utterance u = stt.getUtterance (FLAC_FILE);
-		inputFile.delete ();
-		double[] sentiments = analyser.getSentiment (u);
-		StringBuilder text = new StringBuilder (resultArea.getText () + u.text+"\n-----------------\nSENTIMENTS:\n");
-		for (int i=0;i< analyser.sentimentNames.length;i++){
-			text.append (analyser.sentimentNames[i]+": "+sentiments[i]+"\n"); 
-		}
-		text.append ("----------------------------\n");
-		resultArea.setText (text.toString ());
-
+		new Thread (new PostProcesser ()).start ();
 	}
 
 	public void startRecording () {
@@ -169,11 +150,50 @@ public class SpeechToTextInterface {
 		}
 	}
 	
+	class PostProcesser implements Runnable{
+
+		@Override
+		public void run () {
+			stopRecording.setEnabled(false);
+			String analysing = "Analysing...";
+			resultArea.append (analysing);
+			targetDataLine.stop();
+			targetDataLine.close();
+
+			FLAC_FileEncoder flacEncoder = new FLAC_FileEncoder();
+			File inputFile = new File(OUTPUT_WAV);
+			File outputFile = new File(FLAC_FILE);
+			flacEncoder.encode(inputFile, outputFile);
+
+			Utterance u = stt.getUtterance (FLAC_FILE);
+			inputFile.delete ();
+			if (u == null)
+				return;
+			double[] sentiments = analyser.getSentiment (u);
+			if (sentiments == null){
+				resultArea.setText (resultArea.getText ()+analyser.ERROR+"\n");
+				return;
+			}
+			resultArea.setText (resultArea.getText ().substring (0, resultArea.getText ().length ()-analysing.length ()));
+			StringBuilder text = new StringBuilder (u.text+"\n-----------------\nSENTIMENTS:\n");
+			for (int i=0;i< analyser.sentimentNames.length;i++){
+				text.append (analyser.sentimentNames[i]+": "+sentiments[i]+"\n"); 
+			}
+			text.append ("----------------------------\n");
+			resultArea.append (text.toString ());
+			record.setEnabled(true);
+			
+		}
+		 
+	}
+	
 	private Icon getRecordingIcon (){
 		BufferedImage img = new BufferedImage (16,16, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g = img.createGraphics ();
 		g.setColor (Color.RED);
 		g.fillOval (2, 2, 13, 13);
+		g.setColor (Color.BLACK);
+		g.drawOval (2, 2, 13, 13);
 		g.dispose ();
 		ImageIcon icon = new ImageIcon (img);
 		img.flush ();
