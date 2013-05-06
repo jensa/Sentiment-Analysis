@@ -25,8 +25,7 @@ public class SpeechToTextInterface {
 	private JButton stopRecording;
 	private JButton record;
 	private JTextArea resultArea;
-	
-	
+
 	public static void main(String[] args){
 		File audioDir = new File ("recordings");
 		if (!audioDir.exists ())
@@ -93,10 +92,7 @@ public class SpeechToTextInterface {
 		audio.captureAudio();
 	}
 
-	
-	
 	class PostProcesser implements Runnable{
-
 		@Override
 		public void run () {
 			stopRecording.setEnabled(false);
@@ -125,7 +121,6 @@ public class SpeechToTextInterface {
 			record.setEnabled(true);
 			
 		}
-		 
 	}
 	
 	private Icon getRecordingIcon (){
@@ -140,5 +135,4 @@ public class SpeechToTextInterface {
 		img.flush ();
 		return icon;
 	}
-
 }

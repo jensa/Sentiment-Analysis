@@ -32,7 +32,7 @@ public class AudioRecorder {
 		}
 	}
 	
-	public AudioFormat getAudioFormat(){
+	private AudioFormat getAudioFormat(){
 		float sampleRate = 44100.0F;
 		int sampleSizeInBits = 16;
 		int channels = 1;

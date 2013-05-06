@@ -1,7 +1,6 @@
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -30,7 +29,6 @@ public class SpeechToText {
 		HttpsURLConnection req = (HttpsURLConnection)apiURL.openConnection ();
 		req.setRequestMethod ("POST");
 		req.setRequestProperty ("Content-type", "audio/x-flac; rate=44100");
-		//req.setRequestProperty ("lang", "en");
 		req.setDoInput (true);
 		req.setDoOutput (true);
 		 //Send request
