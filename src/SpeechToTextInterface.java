@@ -21,6 +21,7 @@ import javax.swing.JTextArea;
 public class SpeechToTextInterface {
 	JTextArea resultArea;
 	SpeechToText stt;
+	SentimentAnalyser analyser;
 
 	AudioFormat audioFormat;
 	TargetDataLine targetDataLine;
@@ -39,6 +40,7 @@ public class SpeechToTextInterface {
 
 	private void buildGUI () {
 		stt = new SpeechToText ();
+		analyser = new SentimentAnalyser ();
 		JFrame frame = new JFrame ();
 		frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
 		frame.setSize (600, 800);
@@ -86,8 +88,6 @@ public class SpeechToTextInterface {
 	public void stopRecording () {
 		record.setEnabled(true);
 		stopRecording.setEnabled(false);
-		//Terminate the capturing of input data
-		// from the microphone.
 		targetDataLine.stop();
 		targetDataLine.close();
 
@@ -98,23 +98,23 @@ public class SpeechToTextInterface {
 
 		Utterance u = stt.getUtterance (FLAC_FILE);
 		inputFile.delete ();
-		resultArea.setText (resultArea.getText () + u.text+", confidence: "+u.confidence+"\n");
+		double[] sentiments = analyser.getSentiment (u);
+		StringBuilder text = new StringBuilder (resultArea.getText () + u.text+"\n-----------------\nSENTIMENTS:\n");
+		for (int i=0;i< analyser.sentimentNames.length;i++){
+			text.append (analyser.sentimentNames[i]+": "+sentiments[i]+"\n"); 
+		}
+		resultArea.setText (text.toString ());
 
 	}
 
 	public void startRecording () {
 		record.setEnabled(false);
 		stopRecording.setEnabled(true);
-		//Capture input data from the
-		// microphone until the Stop button is
-		// clicked.
 		captureAudio();
-
 	}
 
 	private void captureAudio(){
 		try{
-			//Get things set up for capture
 			audioFormat = getAudioFormat();
 			DataLine.Info dataLineInfo =
 					new DataLine.Info(
@@ -122,28 +122,17 @@ public class SpeechToTextInterface {
 							audioFormat);
 			targetDataLine = (TargetDataLine)
 					AudioSystem.getLine(dataLineInfo);
-
-			//Create a thread to capture the microphone
-			// data into an audio file and start the
-			// thread running.  It will run until the
-			// Stop button is clicked.  This method
-			// will return after starting the thread.
 			new CaptureThread().start();
 		}catch (Exception e) {
 			e.printStackTrace();
-		}//end catch
+		}
 	}
 	private AudioFormat getAudioFormat(){
 		float sampleRate = 44100.0F;
-		//8000,11025,16000,22050,44100
 		int sampleSizeInBits = 16;
-		//8,16
 		int channels = 1;
-		//1,2
 		boolean signed = true;
-		//true,false
 		boolean bigEndian = false;
-		//true,false
 		return new AudioFormat(sampleRate,
 				sampleSizeInBits,
 				channels,
@@ -155,10 +144,8 @@ public class SpeechToTextInterface {
 		public void run(){
 			AudioFileFormat.Type fileType = null;
 			File audioFile = null;
-
 			fileType = AudioFileFormat.Type.WAVE;
 			audioFile = new File(OUTPUT_WAV);
-
 			try{
 				targetDataLine.open(audioFormat);
 				targetDataLine.start();
@@ -168,9 +155,8 @@ public class SpeechToTextInterface {
 						audioFile);
 			}catch (Exception e){
 				e.printStackTrace();
-			}//end catch
-
-		}//end run
+			}
+		}
 	}
 
 }

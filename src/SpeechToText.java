@@ -42,17 +42,10 @@ public class SpeechToText {
 	      wr.flush ();
 	      wr.close ();
 
-	      //Get Response	
 	      InputStream is = req.getInputStream();
-	      BufferedReader rd = new BufferedReader(new InputStreamReader(is));
-	      String line;
-	      StringBuffer response = new StringBuffer(); 
-	      while((line = rd.readLine()) != null) {
-	        response.append(line);
-	        response.append('\r');
-	      }
-	      rd.close();
-	      String responseString = response.toString ();
+	      BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+	      String responseString = reader.readLine ();
+	      reader.close ();
 	      String utterance = responseString.substring (responseString.indexOf ("utterance")+12, responseString.indexOf ("confidence")-3);
 	      String confidence = responseString.substring (responseString.indexOf ("confidence")+12, responseString.indexOf ("}]}")-1);
 	      double conf = Double.parseDouble (confidence);
