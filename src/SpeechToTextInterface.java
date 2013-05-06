@@ -15,6 +15,7 @@ import javax.sound.sampled.TargetDataLine;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 
@@ -62,7 +63,8 @@ public class SpeechToTextInterface {
 			}
 		});
 		resultArea = new JTextArea ();
-		resultArea.setPreferredSize (new Dimension (500,500));
+		JScrollPane scrollPane = new JScrollPane (resultArea);
+		scrollPane.setPreferredSize (new Dimension (500,500));
 		JPanel p = new JPanel (new GridBagLayout ());
 		GridBagConstraints c = new GridBagConstraints ();
 		c.gridx = 0;
@@ -76,7 +78,7 @@ public class SpeechToTextInterface {
 		c.gridx--;
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridwidth = 2;
-		p.add (resultArea, c);
+		p.add (scrollPane, c);
 
 		frame.add (p);
 		frame.pack ();
@@ -103,6 +105,7 @@ public class SpeechToTextInterface {
 		for (int i=0;i< analyser.sentimentNames.length;i++){
 			text.append (analyser.sentimentNames[i]+": "+sentiments[i]+"\n"); 
 		}
+		text.append ("----------------------------\n");
 		resultArea.setText (text.toString ());
 
 	}

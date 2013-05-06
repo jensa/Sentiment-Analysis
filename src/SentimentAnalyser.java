@@ -18,7 +18,7 @@ public class SentimentAnalyser {
 	
 	
 	public double[] getSentiment (Utterance u){
-		return parseJSON (getSentimentJSON (u.text));
+		return parseJSON (getSentimentJSON (u.text.replaceAll ("#", "")));
 	}
 	
 	private String getSentimentJSON (String query){
