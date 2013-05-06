@@ -1,0 +1,98 @@
+\documentclass[a4paper,11pt,twoside]{ltxdoc}
+
+%\usepackage[utf8]{inputenc} % not used, as I compile with Xelatex
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel} % Language, could be set to swedish
+\usepackage{fancyhdr} % Header and footers
+\usepackage{verbatim} % Better Verbatim packages
+\usepackage{fancyvrb}
+\usepackage{amssymb,amsmath}
+\usepackage{graphicx} % PNG and SVG images, and such.
+\usepackage{enumerate} % better listing options
+
+\pagestyle{fancy}
+
+\fancyhead[LH]{Group 11}
+\fancyhead[RH]{Sentiment Analysis in Speech with Relation to Brands}
+%\fancyfoot[LO]{\thepage}
+%\fancyfoot[RE]{\thepage}
+\title{Project: Search Engines and Information Retrieval Systems}
+\author{
+Jens Arvidsson <jensarv@gmail.com> \and
+Fredrick Chahine <fchahine@kth.se> \and
+Erik Hallström  <fchahine@kth.se> \and
+Petter Salminen <petsal@kth.se>}
+
+
+% Kodkommando
+\newcommand{\javafil}[1]{\lstinputlisting{#1}} % #1 = filnamn, #2 = caption
+\newcommand{\ovning}[1]{\section*{Övning #1}}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+%\listoffigures
+%\listoftables
+\newpage
+\begin{abstract}
+Text goes here...
+
+\end{abstract}
+
+\newpage
+\section{Background}
+Technology is ever moving forward. We're always looking for new ways to interact with your systems and devices. One of these ways to input information to computers would be by natural speech, which still is quite flimsy and hard for computers to analyze. 
+
+With most of our media still being in form of sound, such  as web-radio, and television. It is hard to analyze all the information being run around on this media. 
+
+That is why our mission is to make an experimental program that can transcribe speech and analyze it for trends. For example, this can be used to recognize branding recognition from shows.
+
+This could be very interesting for different companies that care to know how their brand is doing out on the world. To be able to find automatically information in the wast sea of digital audio/video media is a very challenging problem.
+
+
+
+\section{Related Work}
+\subsection{Speech-to-Text}
+Some small history and stuff about speech-to-text.
+
+\subsection{Text attitude}
+To be able to find an general opinion or attitude from a snippet of text.
+
+\section{Method}
+Our solution for this problem consists of not trying to invent the wheel, but trying to use different more-or-less complete solutions for the different steps and stitch then together into our own framework.
+
+First and foremost we have an audio file, which we will send to Google speech API, which will give us a fair caption of the given sound segment.
+
+This text we can then search for given brands or other point of interests, and then send this text for textual attitude analyzing using an web API provided by our mentor at Gavagai.
+
+From here we will get an score, of which we can show the user what kind of attitude the speech had. 
+
+\section{Results}
+
+
+\section{Discussion}
+
+
+\newpage
+\begin{thebibliography}{9}
+
+\bibitem{example}
+  Leslie Lamport,
+  \emph{\LaTeX: A Document Preparation System}.
+  Addison Wesley, Massachusetts,
+  2nd Edition,
+  1994.
+
+\bibitem{example2}
+  Leslie Lamport,
+  \emph{\LaTeX: A Document Preparation System}.
+  Addison Wesley, Massachusetts,
+  2nd Edition,
+  1994.
+
+
+\end{thebibliography}
+
+\end{document}
