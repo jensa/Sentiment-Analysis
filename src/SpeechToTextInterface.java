@@ -131,8 +131,8 @@ public class SpeechToTextInterface {
 		c.gridwidth = 1;
 
 
-		JLabel l = new JLabel(" Brands to analyse:");
-
+		JLabel l = new JLabel("<html> Brands to analyse <br> (not case sensitive):");
+		l.setHorizontalAlignment( JLabel.CENTER );
 		p.add(l,c);
 
 
@@ -204,12 +204,14 @@ public class SpeechToTextInterface {
 		ArrayList<BrandMentions> brand_mentions_list  = new ArrayList<BrandMentions>();
 		String[] wordCorpusVector = corpus.split(" ");
 		for (String searchName : searchNameList){
+			
+			searchName = searchName.trim();
 			BrandMentions brandmention= new BrandMentions(searchName);
 			String[] searchNameVector = searchName.split(" ");
 			nextPosition: for(int i = 0 ; i< wordCorpusVector.length-searchNameVector.length+1; i++){
 				for(int j = 0 ; j<searchNameVector.length; j++){
 					//System.out.println("i:" +i+ " j:"+j + " SearchName: " + searchNameVector[j] + " Wordcorpus: " + wordCorpusVector[j+i]);
-					if(searchNameVector[j].equals(wordCorpusVector[j+i])){
+					if(searchNameVector[j].toLowerCase().equals(wordCorpusVector[j+i].toLowerCase())){
 						continue;
 					}
 					else{
@@ -255,17 +257,18 @@ public class SpeechToTextInterface {
 
 	public void addBrandToList(){
 		String input = brandInput.getText();
-		input = input.toLowerCase();
+		//input = input.toLowerCase();
 		brandStrings.clear();
 		for(String b : input.split(",")){
-			if(!b.equals("" ))
+			if(!b.equals(""))
+				b = b.trim();
 				brandStrings.add(b);
 		}
 	}
 
 	public void analyse(){
 		addBrandToList();
-		String corpus = resultArea.getText().toLowerCase();
+		String corpus = resultArea.getText();
 		
 		
 		if(corpus.equals("")){
@@ -273,7 +276,7 @@ public class SpeechToTextInterface {
 			return;
 		}
 		else if(brandStrings.isEmpty()){
-			JOptionPane.showMessageDialog(frame, "No brands added. Add them in the 'Brands to Analyse:'-field separated with commas like this: Coca Cola, Apple, Ford, Sony");
+			JOptionPane.showMessageDialog(frame, "No brands added. Add them in the 'Brands to Analyse:'-field separated with commas like this: Coca Cola,Apple,Ford,Sony");
 			return;
 		}
 		int bef;
@@ -306,7 +309,8 @@ public class SpeechToTextInterface {
 				System.out.println(s);
 				
 				s = s.trim();
-				s = s.replaceAll("[^a-zA-Z0-9 ]", "");
+				
+				//s = s.replaceAll("[^a-zA-Z0-9 ]", "");
 				
 				Utterance u = new Utterance(s,1);
 				double[] sentiments = analyser.getSentiment (u);
