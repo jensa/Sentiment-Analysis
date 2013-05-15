@@ -162,8 +162,8 @@ public class SpeechToTextInterface {
 		p.add (analyse_button, c);
 
 		c.gridy++;
-		
-		
+
+
 		c.gridwidth = 2;
 		status = new JLabel(" ");
 		Border paddingBorder = BorderFactory.createEmptyBorder(5,5,5,5);
@@ -172,7 +172,7 @@ public class SpeechToTextInterface {
 		p.add (status, c);
 		c.gridwidth = 1;
 		c.gridx=2;
-		
+
 		JButton clear = new JButton("Clear");
 		clear.addActionListener (new ActionListener (){
 			@Override
@@ -180,19 +180,19 @@ public class SpeechToTextInterface {
 				resultArea.setText("");
 			}
 		});
-		
+
 		p.add(clear,c);
 		c.gridx=0;
 		c.gridy++;
 		c.gridwidth = 3;
 		p.add (scrollPane, c);
 
-		
+
 		results = new JEditorPane();
 		results.setContentType("text/html");
 		results.setEditable(false);
 		JScrollPane js = new JScrollPane(results);
-		
+
 		frame.setLayout(new GridLayout(1,2));
 		frame.add(p);
 		frame.add(js);
@@ -266,6 +266,8 @@ public class SpeechToTextInterface {
 	public void analyse(){
 		addBrandToList();
 		String corpus = resultArea.getText().toLowerCase();
+		
+		
 		if(corpus.equals("")){
 			JOptionPane.showMessageDialog(frame, "No input. Record voice, select a sound-file or paste text in the resultArea below the buttons.");
 			return;
@@ -302,8 +304,18 @@ public class SpeechToTextInterface {
 			for (String s :b.getSentenceList()){
 				text+= "<tr><td>" + s + "</td>";
 				System.out.println(s);
+				
+				s = s.trim();
+				s = s.replaceAll("[^a-zA-Z0-9 ]", "");
+				
 				Utterance u = new Utterance(s,1);
 				double[] sentiments = analyser.getSentiment (u);
+
+				try {
+					Thread.sleep(5000);
+				} catch(InterruptedException e) {
+				}
+
 				for (int i=0;i< analyser.sentimentNames.length;i++){
 					text += "<td>" +sentiments[i]+"</td>";
 					meanVec[i] += sentiments[i];
@@ -344,7 +356,7 @@ public class SpeechToTextInterface {
 		String analysing = "Analysing file "+f.getName ()+"...";
 		status.setText(analysing);
 
-		
+
 		//Old:
 		//resultArea.append (analysing);
 
