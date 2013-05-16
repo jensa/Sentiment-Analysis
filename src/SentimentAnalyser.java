@@ -19,9 +19,14 @@ public class SentimentAnalyser {
 	
 	
 	public double[] getSentiment (Utterance u){
-		String sentimentJSON = getSentimentJSON (u.text.replaceAll ("#", ""));
-		if (sentimentJSON.equals (ERROR))
+		String cleanString = u.text.replaceAll ("\\#|\\'|\\.|\\!|\\r|\\n|\\r\\n", "");
+		System.out.println ("Clean: "+cleanString);
+		System.out.println ("Original: "+u.text);
+		String sentimentJSON = getSentimentJSON (cleanString);
+		if (sentimentJSON.equals (ERROR)){
+			System.err.println ("ERROR: "+u.text);
 			return null;
+		}
 		return parseJSON (sentimentJSON);
 	}
 	
@@ -53,7 +58,7 @@ public class SentimentAnalyser {
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 			return ERROR;
 		}
 		return response;

@@ -65,6 +65,7 @@ public class SpeechToText {
 			String confidence = responseString.substring (responseString.indexOf ("confidence")+12, responseString.indexOf ("}]}")-1);
 			confidences[i] = Double.parseDouble (confidence);
 			sb.append (" "+utterance);
+			System.out.println (utterance);
 		}
 		if (sb.length () == 0)
 			return null;
