@@ -10,7 +10,6 @@
 \usepackage{graphicx} % PNG and SVG images, and such.
 \usepackage{enumerate} % better listing options
 \usepackage{hyperref} % URL and stuff.
-\usepackage[margin=2.5cm]{geometry}
 
 \pagestyle{fancy}
 
@@ -21,7 +20,7 @@
 \title{Project: Search Engines and Information Retrieval Systems}
 \author{
 Jens Arvidsson <\href{mailto:jensarv@gmail.com}{jensarv@gmail.com}> \and
-Fredrick Chahine <\href{mailto:fchahine@kth.se}{fch'ahine@kth.se}> \and
+Fredrick Chahine <\href{mailto:fchahine@kth.se}{fchahine@kth.se}> \and
 Erik Hallström  <\href{mailto:erik_hallstrom@icloud.com}{erik\_hallstrom@icloud.com}> \and
 Petter Salminen <\href{mailto:petsal@kth.se}{petsal@kth.se}>}
 
@@ -53,29 +52,29 @@ For the least we can say that we're very happy with the results. And hope that o
 
 \newpage
 \section{Background}
-Today we find ourselves flooded with information. This information contains great value to companies, as they are
-able to draw on consumer preferences and adjust their product lines accordingly. And yet, information may be difficult
-to process for several reasons. One reason is the sheer amount of it. Another aspect of information that may make it difficult
-to process is its format. The spoken word can be far more difficult to process that a written document. To capitalize on this treasure
-grove of information, we need to develop effective ways of deriving details from the spoken word and processing them.
+Today, we have more ways than ever of sharing information thanks to the Internet and social media. We can share our
+thoughts, feelings, and experiences with just a few button strokes. In addition, consumers today can reach a wide audience
+when they express their feelings about products and brands. This data on consumer preferences is of great value to companies.
+Companies can mine the data to extract trends and opinions from their clients. And yet, there is an oasis of spoken
+data relating to this area that remains unexploited.
+At the same time, technology is moving forward multiple levels. Portable devices are capable of recording better quality
+audio than they were ten years ago. Smartphones are also far more ubiquitous than they were at the time.
+Furthermore, new APIs are emerging that make it easy to process audio recordings. These technological advancements herald
+in oppportunities that are of great value to companies. The possibility to effectively process live or recorded audio
+to elicit consumer thoughts and preferences may be just around the corner. Empowered with this information, companies will
+be able to position their product lines accordingly.
+And yet, there are some unresolved issues. Data may be difficult to process for several reasons. One reason is the sheer
+amount of it. Another aspect of information that may make it difficult to process is its format. The spoken word can be 
+far more difficult to process that a written document. To capitalize on this treasure grove of information, we need
+to develop effective ways of deriving details from the spoken word and processing them.
 
--------------------------
-
-Technology is ever moving forward.
-We're always looking for new ways to interact with your systems and devices.
-One of these ways to input information to computers would be by natural speech,
-which still is quite flimsy and hard for computers to analyze. 
-
-With most of our media still being partly or fully in form of sound, such  as web-radio, and television.
+With most of our media still being partly or fully in form of sound, such  as web radio, and television.
 It is hard to analyze all the information being run around on this media, as the format is not
 native to our computers and systems. 
 
 With this is mind, our mission is to make an experimental program that can transcribe speech and analyze it, looking for certain trends.
 For example, this can be used to recognize branding recognition from a audio stream, and then analyze the context to find an opinion about the brand.
 A complete solution could be very interesting for companies who care to know how their brand is doing ``out there'' in the world.
-
-To be able to find automatically information in the vast sea of digital audio/video media is a very challenging problem
-because the information itself is very hard for computers to read. 
 
 
 
@@ -95,27 +94,18 @@ A new technology based on the n-gram language model, was introduced in the begin
 
 These typewriters was suppose to be used extensively by certain persons, thus they allowed for individual training of the system. This was not the case for another application of speech recognition, namely routing phonecalls. Usually when calling support centers there is a need for routing phone-calls to the correct expert or department. This require a large workforce of operators and if it could be automated the companies could save a lot of money. These systems where to be used on demand by millions of people, thus they needed to generalize very well among different voices and regional accents. The utilisation of this technology started in the early 90's and today such systems are annually routing billions of phone calls around the world. 
 
-A technology that was developed and became more prevalent during mid 80's was the hidden Markov model (HMM). It quickly became the best and most preferred method for speech recognition. In a hidden Markov model, state and observation are key concepts. States are what the actual quantity being estimated is equal to. The obvious choice is words, but there are modified models and other quantities could be choosen to represent the states. The HMM models the state transitions between the words based on uncertain measurements and the probability of a new word given the previous word. The state transitions have certain probabilities and some transitions are more probable than others that might result in bad grammar or wierd sentences.  The measurements are the speech itself 
+A technology that was developed and became more prevalent during mid 80's was the hidden Markov model (HMM). It quickly became the best and most preferred method for speech recognition. In a hidden Markov model, state and observation are key concepts. States are what the actual quantity being estimated is equal to. The obvious choice is words, but there are modified models and other quantities could be choosen to represent the states. The HMM models the state transitions between the words based on uncertain measurements and the probability of a new word given the previous word. The state transitions have certain probabilities and some transitions are more probable than others that might result in bad grammar or wierd sentences.  The measurements are the speech itself, sound waves captured from the microphone.   \bibitem{history}
 
-Today the use of Speech-to-Text can be found in many different fields and applications.
+Further on more modern machine learning techniques such as support vector machines and artificial neural networks has been used to get promising results within the field.
 
-The use of Speech-to-Text can be found in many different fields and applications.
+Today the use of speech-to-text or speech recognition can be found in many different fields and applications. It is extensively used in industry and by customers. Hands-free computing; writing emails just by talking to the computer, voice recognition on the cellphone to determine whom to call or what music to listen to or perhaps new intelligent assistats such as Apple iPhone's Siri are helping people to do daily tasks with speech recognition. Google uses speech recognition similar to Siri on their Android phones, but also as text input to their search engine with together with Google Chrome. This is the service we are using in our program.
 
-
-As an example, court reporting where everything said in court could be recorded and automatically transcribed by a computer (replacing human labor).
-Hands-free computing, meaning one could write messages and emails by just talking to the computer.
-Automatic calling exchanges at service numbers, such that one could ask the problem and get directed to a expert within the specific field.
-
-Or on current generation of cellphones as popularized by the Apple iPhone's application Siri
-- supplying an intelligent personal assistant and knowledge navigator that you can ask questions in natural language and get an answer. 
 
 %% Text about some how speech-to-text works.
 
 \subsection{Sentiment Analysis}
-The \emph{Sentiment Analysis} or \emph{Opinion Mining} problem is that given any snippet of text,
-to find the general attitude of given text on a topic.
-As an very simple example, the text ``I hate Mondays'' has a very negative attitude,
-while the attitude of ``I would not prefer Mondays'' is more towards neutral.
+The \emph{Sentiment Analysis} or \emph{Opinion Mining} problem is that given any snippet of text, to find the general attitude of given text on a topic.
+As an very simple example, the text ``I hate Mondays'' has a very negative attitude, while the attitude of ``I would not prefer Mondays'' is more towards neutral.
 
 Some early work in the area would be for example to sample reviews of a movie, or restaurant and analyze the polarity of it. Early work on this has been acknowledged to be done by Turney\cite{turney} and Pang\cite{pang}
 
@@ -153,7 +143,7 @@ evaluate a text string based on a number of parameters. We can look for the sent
 and uncertain. The program then presents the user with the data tabulated as shown in the figure. %% bild här
 
 \begin{center}
-\includegraphics[scale=0.60]{../poster/screenshot_crop.png}
+\includegraphics[trim = 0mm 100mm 0mm 0mm, clip, scale=0.5]{../poster/screenshot.png}
 \end{center}
 
 --------------------
@@ -190,7 +180,13 @@ Precision vs Recall
   Addison Wesley, Massachusetts,
   2nd Edition,
   1994.
-
+  
+  \bibitem{history}
+  B.H. Juang & Lawrence R. Rabiner,
+  \emph{Automatic Speech Recognition � A Brief History of the Technology Development}.
+  Georgia Institute of Technology, Atlanta
+  Rutgers University and the University of California, Santa Barbara
+  
 %% This thing seems to be THE SHIT to cite, has 17k of them on google scholar.
 \bibitem{speech}
 Rabiner, Lawrence R.
