@@ -216,6 +216,17 @@ Score: Violence: 3.0, Uncertain: 1.0
 Score: Violence: 1.0, Uncertain: 1.0
 
 \section{Discussion}
+The scope of this project is obvious to small to design our own speech recognition algorithm or sentiment analysis algorithm. We had to rely on 3rd party services such as the speech sentiment API from Gavagai and Googles unofficial speech recognition web service. Even though a large international company like Google uses cutting edge technology for their speech recognition, we had major problems recognising some of the words, even when the speaker was alone in a quiet room and spoke at normal speed. Especially recognise the brands them selves showed to be fairly hard. Sometimes only one out of several mentions was recognised, obviously making the end results worse. 
+
+When we first began with this project we tried to use the CMU Sphinx, a speech recognition system developed at the Carnegie Mellon University, now open source. However the setup showed to be very cumbersome and we simply didn't manage to get it to work. Given the short time schedule we turned to Googles unofficial web service. We figured we would still as good result as possible since Google are using the speech-to-text in their products. 
+
+The text to speech function did however do well when using short recordings or sound files as opposed to long recordings which did comparatively worse. The reason for this was that we had to break up the sound files into segments of 256 kB and classify them one by one. This had to be done due to Googles own restrictions on large files. If a sentence was broken up just in the middle it sometimes resulted in grammatically incorrect phrases. Since the speech-to-text algorithms are based on grammar this furthermore worsened the speech recognition results.
+
+As for the sentiment analysis it preformed as expected and did fairly well if the text was typed in or pasted by hand. Certainly it preformed better the more data that was available, so larger texts producer more precise results. 
+
+The program had the capability to input several brands and do sentiment analysis at the same time on the corpus. When speaking of several brands at the same time in a recording, the algorithm produced very bad results. Firstly the speech recognition is worse when mentioning more special words that can not be put in a grammatically context, and secondly the sentiment analysis doesn't seem to care that much about grammar and order of the words in the input. When doing multiple brand sentiment analysis where the brands where mentioned close to each other they sometimes seemed to be mixed up. 
+
+Our program did produce reasonable results when just mentioning one brand in a short sound file with the same sentiment towards the brand all along the conversation. 
 
 
 \newpage 
