@@ -45,7 +45,7 @@ Petter Salminen <\href{mailto:petsal@kth.se}{petsal@kth.se}>}
 \begin{abstract}
 In the following project we made a program that does a \emph{Sentiment Analysis} for a given brand on one of the following three things: A live recording using the microphone. A folder containing several audio files. A string inserted into the text box.
 
-This because our client, Jussi at Gavagai, want's us to try out if it is possible to develop a platform that can preform Sentiment Analysis for brands given that the input data is in the form of a audio file, since there is no known platform to preform just this. 
+This because our client, Jussi at Gavagai, wants us to try out if it is possible to develop a platform that can perform Sentiment Analysis for brands given that the input data is in the form of a audio file, since there is no known platform to perform just this. 
 
 Using an \verb#API# given to us by Jussi, the program grades the given input on the five given levels: Sexy, Violence, Positive, Negative and Uncertainty. 
 
@@ -58,7 +58,7 @@ The least we can say that we're very happy with the results. And hope that our c
 
 \section{Contributions}
 \subsection{Jens}
-Jens has written the basic interface code and the code communicating with/parsing replies from both of the API servers, aswell as carrying out the experiemnts and writing the Results section of the report.
+Jens has written the basic interface code and the code communicating with/parsing replies from both of the API servers, as well as carrying out the experiments and writing the Results section of the report.
 
 
 \subsection(Fredrick)
@@ -71,7 +71,7 @@ Erik has written the code for inputing brands and search for mentions of them in
 
 
 \subsection{Petter}
-Petter has done much on the report, mostly \LaTeX things to make this document look acceptable. But when it comes to writing he wrote the Abstract, Sentiment Analysis and small parts of the Text-to-Speech.  Also, he has done all the posters for the poster session. In the begining he tried to find audio files (with brands in them) to analyze, and also record some of his own.
+Petter has done much on the report, mostly \LaTeX things to make this document look acceptable. But when it comes to writing he wrote the Abstract, Sentiment Analysis and small parts of the Text-to-Speech.  Also, he has done all the posters for the poster session. In the beginning he tried to find audio files (with brands in them) to analyze, and also record some of his own.
 
 \newpage
 \section{Background}
@@ -90,10 +90,10 @@ be able to position their product lines accordingly.
 
 And yet, there are some unresolved issues. Data may be difficult to process for several reasons. One reason is the sheer
 amount of it. Another aspect of information that may make it difficult to process is its format. The spoken word can be 
-far more difficult to process that a written document. To capitalize on this treasure grove of information, we need
+far more difficult to process that a written document. To capitalize on this treasure trove of information, we need
 to develop effective ways of deriving details from the spoken word and processing them.
 
-With most of our media still being partly or fully in form of sound, such  as web radio, and television.
+With most of our media still being partly or fully in form of sound, such as web radio, and television.
 It is hard to analyze all the information being run around on this media, as the format is not
 native to our computers and systems. 
 
@@ -152,7 +152,7 @@ Our solution to this problem consists of three steps, which are later combined i
 Google's speech \verb#API# is used widely across its product range, from web search to translate to Android voice commands.
 Provided with an audio file in \verb#FLAC# format, the \verb#API# returns a \verb#JSON# object representing the transcribed audio. The \verb#JSON# object
 can then be parsed to retrieve the text string that corresponds to the spoken message. Google's speech \verb#API# allows for a number
-of different configuration settings, including language and audio frequency of the supplied file. However, it only allows for file sizes up to 256 kb, 
+of different configuration settings, including language and audio frequency of the supplied file. However, it only allows for file sizes up to 256 kB, 
 which means that larger recordings must be split up into smaller parts and submitted individually.
 
 In our project, audio file input is extended by letting the user of the program record an audio snippet in real time and
@@ -196,7 +196,7 @@ The test text used for this test was a long blog post detailing the authors' lov
 Sexy: 0.42857142857142855 Violent: 0.14285714285714285 Positive: 1.2857142857142858 Negative: 0.07142857142857142
 
 
-Unfortunately, due to limitations on big files, the output from he speech-to-text \verb#API# was mostly unintelligble, and very little of the original text survived the conversion. Thus, the results were unusable for any sane comparison. This finding limited our testing to small files, and hindered testing on podcasts, live streams and other interesting audio sources.
+Unfortunately, due to limitations on big files, the output from he speech-to-text \verb#API# was mostly unintelligible, and very little of the original text survived the conversion. Thus, the results were unusable for any sane comparison. This finding limited our testing to small files, and hindered testing on podcasts, live streams and other interesting audio sources.
 
 \subsection{Mixed brands}
 In this test, short texts which mention multiple brands with different sentiments were used. The program was configured to use a small scope when searching for sentiments, 3 words behind and 3 words after the brand name. The audio file input was a failure, since most of the time brand names weren't picked up by the speech-to-text \verb#API#, so no sentiment analysis could be done on these texts. Even if the brand names were inserted, differing sentiments in the same text meant that the sentiment analysis often gave bad results. For example, the sentence ``I love Coke, but I hate my Ford. Although, Coke is really nice to drink while driving, so I guess the Ford isn't completely worthless.'', with the score for Coke being 
@@ -211,7 +211,7 @@ Sexy: 2.0, Positive: 2.0, Negative:2.0
 Three other, similar text snippets were recorded and tried, and produced similar results not possible to compare with the original text snippets.
 
 \subsection{Small snippets, one brand, one sentiment}
-The last test was made to ascertain that our program worked at all as intended, as the examples are idealized and might not be enountered in a real situation. They do, however, overcome the limitations set on our experimental program by the outside services used to power it, and as such serve as an adequate proof of concept. The snippets used are small, they contain only one brand that is mentioned multiple times (Ford), and the whole snippet only contains one sentiment. The scope used was ten words behind, twenty words after.
+The last test was made to ascertain that our program worked at all as intended, as the examples are idealized and might not be encountered in a real situation. They do, however, overcome the limitations set on our experimental program by the outside services used to power it, and as such serve as an adequate proof of concept. The snippets used are small, they contain only one brand that is mentioned multiple times (Ford), and the whole snippet only contains one sentiment. The scope used was ten words behind, twenty words after.
 
 The results are presented below. First the original text and its sentiment score, and then the processed recording of it being read aloud and the associated sentiment score.
 
