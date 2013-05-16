@@ -106,8 +106,15 @@ public class SpeechToTextInterface {
 			@Override
 			public void actionPerformed (ActionEvent e) {
 				
+				Thread thread = new Thread(new Runnable()
+				{
+				public void run()
+				{
+					analyse();
+				}
+				});
 				
-				analyse();
+				thread.start();
 			}
 		});
 		p = new JPanel (new GridBagLayout ());
@@ -298,7 +305,6 @@ public class SpeechToTextInterface {
 	}
 
 	public void analyse(){
-		status.setText("jej");
 		p.revalidate();
 		status.revalidate();
 		status.repaint();
@@ -334,7 +340,7 @@ public class SpeechToTextInterface {
 		String text = "<html><font face=\"arial\" size=\"4\">";
 		
 
-		
+		int counter = 0;
 		for(BrandMentions b: bmlist){
 			double[] meanVec = new double[analyser.sentimentNames.length];
 			double numberOfmentions = b.getSentenceList().size();
@@ -353,7 +359,8 @@ public class SpeechToTextInterface {
 				s = s.trim();
 				
 				//s = s.replaceAll("[^a-zA-Z0-9 ]", "");
-				
+				counter++;
+				status.setText("Analysing " + b.getBrand() + "... " + counter + "/" + b.getSentenceList().size());
 				Utterance u = new Utterance(s,1);
 				double[] sentiments = analyser.getSentiment (u);
 
@@ -388,6 +395,8 @@ public class SpeechToTextInterface {
 		}
 		text += "</html>";
 		results.setText(text);
+		
+		status.setText("Analysing finished!");
 	}
 
 	public void stopRecording () {
