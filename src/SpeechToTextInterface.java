@@ -201,6 +201,35 @@ public class SpeechToTextInterface {
 		frame.pack ();
 		frame.setVisible (true);
 	}
+	
+	static ArrayList<BrandMentions> search2(String corpus, ArrayList<String> searchNameList, int before, int after){
+		String[] words = corpus.split(" ");
+		ArrayList<BrandMentions> brandMentions = new ArrayList<BrandMentions> ();
+		for (String brand : searchNameList){
+			brand = brand.trim();
+			BrandMentions brandMention= new BrandMentions(brand);
+			int index = 0;
+			for (String word : words){
+				if (word.toLowerCase ().equals (brand.toLowerCase ()))
+					brandMention.addSentence (getContext (words, index, before, after));
+				index++;
+			}
+			brandMentions.add (brandMention);
+		}
+		return brandMentions;
+		
+	}
+
+	private static String getContext (String[] words, int index, int before, int after) {
+		StringBuilder s = new StringBuilder ();
+		int wordIndex = (index-before);
+		if (wordIndex < 0)
+			wordIndex = 0;
+		for (int i=0;i<after+before+1;i++,wordIndex++){
+			s.append (words[wordIndex] + " ");
+		}
+		return s.toString ();
+	}
 
 	static ArrayList<BrandMentions> search(String corpus, ArrayList<String> searchNameList, int before, int after){
 		ArrayList<BrandMentions> brand_mentions_list  = new ArrayList<BrandMentions>();
@@ -257,7 +286,7 @@ public class SpeechToTextInterface {
 		}
 	}
 
-	public void addBrandToList(){
+	public void addBrandsToList(){
 		String input = brandInput.getText();
 		//input = input.toLowerCase();
 		brandStrings.clear();
@@ -275,9 +304,8 @@ public class SpeechToTextInterface {
 		status.repaint();
 		p.repaint();
 		
-		addBrandToList();
+		addBrandsToList();
 		String corpus = resultArea.getText();
-		
 		
 		if(corpus.equals("")){
 			JOptionPane.showMessageDialog(frame, "No input. Record voice, select a sound-file or paste text in the resultArea below the buttons.");
@@ -301,6 +329,7 @@ public class SpeechToTextInterface {
 			JOptionPane.showMessageDialog(frame, "Words before and after must be positive numbers.");
 			return;
 		}
+		corpus = corpus.replaceAll ("\\.|\\,|\\'|\\!", "");
 		ArrayList<BrandMentions> bmlist =  search(corpus, brandStrings, bef , aft);
 		String text = "<html><font face=\"arial\" size=\"4\">";
 		
@@ -330,7 +359,7 @@ public class SpeechToTextInterface {
 
 
 				try {
-					Thread.sleep(10000);
+					Thread.sleep(6000);
 				} catch(InterruptedException e) {
 				}
 
@@ -394,7 +423,7 @@ public class SpeechToTextInterface {
 
 		//New-----
 
-		resultArea.append(" " + u.text);
+		resultArea.append("\n----------------------------\n" + u.text);
 
 
 		//Utterance totalUtterance = new Utterance(resultArea.getText(), )
