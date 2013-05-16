@@ -135,11 +135,13 @@ With extreme rise of social media platforms such as \emph{Twitter} and \emph{Fac
 
 Our solution to this problem consists of three steps, which are later combined into a single program.
 
-1. Our first step is to work convert speech-to-text. For this we use Google's speech \verb#API#.
+\begin{enumerate}
+\item Our first step is to work convert speech-to-text. For this we use Google's speech \verb#API#.
 
-2. Next, we process the converted text to capture brands that the data miner is interested in.
+\item Next, we process the converted text to capture brands that the data miner is interested in.
 
-3. Finally, we process the expressions related to these brands to detect sentiments, using Gavagai's \verb#API#.
+\item Finally, we process the expressions related to these brands to detect sentiments, using Gavagai's \verb#API#.
+\end{enumerate}
 
 Google's speech \verb#API# is used widely across its product range, from web search to translate to Android voice commands.
 Provided with an audio file in \verb#FLAC# format, the \verb#API# returns a \verb#JSON# object representing the transcribed audio. The \verb#JSON# object
