@@ -43,6 +43,14 @@ Text goes here...
 
 \newpage
 \section{Background}
+Today we find ourselves flooded with information. This information contains great value to companies, as they are
+able to draw on consumer preferences and adjust their product lines accordingly. And yet, information may be difficult
+to process for several reasons. One reason is the sheer amount of it. Another aspect of information that may make it difficult
+to process is its format. The spoken word can be far more difficult to process that a written document. To capitalize on this treasure
+grove of information, we need to develop effective ways of deriving details from the spoken word and processing them.
+
+-------------------------
+
 Technology is ever moving forward.
 We're always looking for new ways to interact with your systems and devices.
 One of these ways to input information to computers would be by natural speech,
@@ -56,7 +64,7 @@ With this is mind, our mission is to make an experimental program that can trans
 For example, this can be used to recognize branding recognition from a audio stream, and then analyze the context to find an opinion about the brand.
 A complete solution could be very interesting for companies who care to know how their brand is doing ``out there'' in the world.
 
-To be able to find automatically information in the wast sea of digital audio/video media is a very challenging problem
+To be able to find automatically information in the vast sea of digital audio/video media is a very challenging problem
 because the information itself is very hard for computers to read. 
 
 
@@ -87,8 +95,37 @@ Thus for example finding a lot of complains about something could give great aut
 
 
 \section{Method}
-Our solution for this problem consists of not trying to invent the wheel, but trying to use different
-more-or-less complete solutions for the different steps and stitch then together into our own framework.
+
+Our solutin to this problem consists of three steps, which are later combined into a single program.
+
+1. Our first step is to work convert speech to text. For this we use Google's speech API.
+
+2. Next, we process the converted text to capture brands that the data miner is interested in.
+
+3. Finally, we process the expressions related to these brands to detect sentiments, using Gavagai's API.
+
+Google's speech API is used widely across its product range, from web search to translate to Android voice commands.
+Provided with an audio file in FLAC format, the API returns a JSON object representing the transcribed audio. The JSON object
+can then be parsed to retrieve the text string that corresponds to the spoken message. Google's speech API allows for a number
+of different configuration settings, including language and audio frequency of the supplied file.
+
+In our project, audio file input is extended by letting the user of the program record an audio snippet in real time and
+then submit it for processing.
+
+In the second step, mentions of brands are elicited from the transcribed audio. In our program, the user supplies the name
+of a brand that he or she wants to watch for. The user also chooses how many words before an after the brand name should
+be included in the analysis. Thus, there is a precision-vs-recall tradeoff here. Choosing a large number of words to include
+in the processing increase the scope of the search, but might lower the precision as unrelated adjectives may be grouped
+with the brand mention.
+
+In the third step, we provide cardinal scores of the audio according to a number of criteria. Gavagai's API lets us
+evaluate a text string based on a number of parameters. We can look for the sentiments described as positive, negative, sexy, violent,
+and uncertain. The program then presents the user with the data tabulated as shown in the figure. %% bild här
+
+--------------------
+
+Our solution to this problem consists not of trying to reinvent the wheel, but of employing different
+solutions that are more-or-less complete throughout the different stages, and then stitching them together.
 
 First and foremost we have an audio file, which we will send to Google speech API, which will give us a fair caption of the given sound segment.
 
