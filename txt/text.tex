@@ -144,7 +144,8 @@ Our solution to this problem consists of three steps, which are later combined i
 Google's speech \verb#API# is used widely across its product range, from web search to translate to Android voice commands.
 Provided with an audio file in \verb#FLAC# format, the \verb#API# returns a \verb#JSON# object representing the transcribed audio. The \verb#JSON# object
 can then be parsed to retrieve the text string that corresponds to the spoken message. Google's speech \verb#API# allows for a number
-of different configuration settings, including language and audio frequency of the supplied file.
+of different configuration settings, including language and audio frequency of the supplied file. However, it only allows for file sizes up to 256 kb, 
+which means that larger recordings must be split up into smaller parts and submitted individually.
 
 In our project, audio file input is extended by letting the user of the program record an audio snippet in real time and
 then submit it for processing.
