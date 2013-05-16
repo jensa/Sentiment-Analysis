@@ -37,7 +37,7 @@ public class SpeechToTextInterface {
 
 	JEditorPane results;
 
-
+	JPanel p;
 
 	ArrayList<String> brandStrings = new ArrayList<String>();
 	JTextField brandInput;
@@ -99,16 +99,18 @@ public class SpeechToTextInterface {
 		brandInput = new JTextField("");
 
 
-
+	
 
 		JButton analyse_button = new JButton("Analyse");
 		analyse_button.addActionListener (new ActionListener (){
 			@Override
 			public void actionPerformed (ActionEvent e) {
+				
+				
 				analyse();
 			}
 		});
-		JPanel p = new JPanel (new GridBagLayout ());
+		p = new JPanel (new GridBagLayout ());
 		GridBagConstraints c = new GridBagConstraints ();
 		c.gridx = 0;
 		c.gridy = 0;
@@ -267,6 +269,12 @@ public class SpeechToTextInterface {
 	}
 
 	public void analyse(){
+		status.setText("jej");
+		p.revalidate();
+		status.revalidate();
+		status.repaint();
+		p.repaint();
+		
 		addBrandToList();
 		String corpus = resultArea.getText();
 		
@@ -295,6 +303,9 @@ public class SpeechToTextInterface {
 		}
 		ArrayList<BrandMentions> bmlist =  search(corpus, brandStrings, bef , aft);
 		String text = "<html><font face=\"arial\" size=\"4\">";
+		
+
+		
 		for(BrandMentions b: bmlist){
 			double[] meanVec = new double[analyser.sentimentNames.length];
 			double numberOfmentions = b.getSentenceList().size();
@@ -308,6 +319,8 @@ public class SpeechToTextInterface {
 				text+= "<tr><td>" + s + "</td>";
 				System.out.println(s);
 				
+
+				
 				s = s.trim();
 				
 				//s = s.replaceAll("[^a-zA-Z0-9 ]", "");
@@ -315,10 +328,13 @@ public class SpeechToTextInterface {
 				Utterance u = new Utterance(s,1);
 				double[] sentiments = analyser.getSentiment (u);
 
+
 				try {
-					Thread.sleep(5000);
+					Thread.sleep(10000);
 				} catch(InterruptedException e) {
 				}
+
+
 
 				for (int i=0;i< analyser.sentimentNames.length;i++){
 					text += "<td>" +sentiments[i]+"</td>";
