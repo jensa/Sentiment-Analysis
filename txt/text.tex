@@ -52,11 +52,6 @@ grove of information, we need to develop effective ways of deriving details from
 -------------------------
 
 Technology is ever moving forward.
-
-We're always looking for new ways to interact with your systems and devices. One of these ways to input information to computers would be by natural speech, which still is quite flimsy and hard for computers to analyse. 
-
-With most of our media still being partly or fully in form of sound, such as web-radio, and television. It is hard to analyse all the information being run around on this media, as the format is not native to our computers and systems. 
-
 We're always looking for new ways to interact with your systems and devices.
 One of these ways to input information to computers would be by natural speech,
 which still is quite flimsy and hard for computers to analyze. 
@@ -77,20 +72,7 @@ because the information itself is very hard for computers to read.
 \section{Related Work}
 \subsection{Speech-to-Text}
 \emph{Speech-to-text}, or more generally \emph{Computer Speech Recognition} is the general problem in computer science where the computer has to translate spoken words into text.
-
-The first real attempt to do speech recognition was made during the 50's and the system could only handle a small subset of speech, namely digit recognition. In 1952 reasearchers at Bell Laboratories built a speech recognition system that only could recognize digits by a single speaker in a quiet room. The thechnology of  the system was based on the theory of the acoustics of speech and the machine triggered on the sound of the vovels in the different digits.
-
-Similar work was made by researchers at RCA Laboratories and at MIT Lincoln Lab during the 50's. The research teams at these two institutions built speech recognitions systems that could classify vovels that a test person spoke.
-
-Moving on to the 60's, there were severeal Japanese teams that had progress with speech recognition, especially two professors named Suzuki and Nakata at Kyoto University. Even though they still only could recognize single digits or vovels, however the difference here was that these could be recognized in countinous speech. The earlier systems assumed each utterance of the test speaker contained the complete digit or vovel and thus did not need to be actively segmented.  
-
-During the 70's the first speech recognition system that could handle spoken words an sentences began to be developed. A program named "Harpy" was made at Carnegie Mellon University and could recognize speech containing 1011 different words. It had a moderate preformance . Harpy used a graph search algorithm to obtain the results. 
-
-A new technology based on the n-gram language model, was introduced in the beginning of the 80's and have been very important to speech recognition systems ever since. One obvious task for a speech recognizer is to use it as a automatic typewriter; a user speaks words and sentences that should be written to a document. Since there is an underlying structure and grammar in all form of language, not all letter orderings and word orderings are equally probable. In fact, some orderings are even wrong, i.e the words are misspelled or sentences are gramatically incorrect. The n-gram model looks at a sequence of words and tells how probable it is. That will help when doing the word recognition, we will get a prior for each word and thus use a M.A.P estimation for what the next word ought to be.
-
-These typewriters was suppose to be used extensively by certain persons, it thus allowed for individual training of the system. This was not the case for another application of speech recognition, namely routing phonecalls
-
-Today the use of Speech-to-Text can be found in many different fields and applications.
+The use of Speech-to-Text can be found in many different fields and applications.
 
 As an example, court reporting where everything said in court could be recorded and automatically transcribed by a computer (replacing human labor).
 Hands-free computing, meaning one could write messages and emails by just talking to the computer.
@@ -114,7 +96,7 @@ Thus for example finding a lot of complains about something could give great aut
 
 \section{Method}
 
-Our solutin to this problem consists of three steps, which are later combined into a single program.
+Our solution to this problem consists of three steps, which are later combined into a single program.
 
 1. Our first step is to work convert speech to text. For this we use Google's speech API.
 
@@ -153,6 +135,7 @@ From here we will get an score, of which we can show the user what kind of attit
 
 \section{Results}
 
+Precision vs Recall
 
 \section{Discussion}
 
