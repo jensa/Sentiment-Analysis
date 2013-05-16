@@ -48,7 +48,7 @@ For example, the given input of ``When I drink coca cola I feel super good and i
 
 When the speech-to-text \verb#API# works great, our program works like a charm, and is very good for catching the general attitude towards a given brand. But the text to speech \verb#API# we're using is quite crude. This means that in many of our test cases gives it gave us very weird (non logical text) from the given vocal input. When this happens our program will also give very bad results, especially when the brand itself disappears from the text.
 
-For the least we can say that we're very happy with the results. And hope that our client will be happy with our experimental results.
+The least we can say that we're very happy with the results. And hope that our client will be happy with our experimental results.
 \end{abstract}
 
 \newpage
@@ -76,8 +76,6 @@ native to our computers and systems.
 With this is mind, our mission is to make an experimental program that can transcribe speech and analyze it, looking for certain trends.
 For example, this can be used to recognize branding recognition from a audio stream, and then analyze the context to find an opinion about the brand.
 A complete solution could be very interesting for companies who care to know how their brand is doing ``out there'' in the world.
-
-
 
 \section{Related Work}
 \subsection{Speech-to-Text}
@@ -156,9 +154,28 @@ First and foremost we have an audio file, which we will send to Google speech AP
 
 This text we can then search for given brands or other point of interests, and then send this text for textual attitude analyzing using an web API provided by our mentor at Gavagai.
 
-From here we will get an score, of which we can show the user what kind of attitude the speech had. 
+From here we will get a score, from which we can show the user what kind of attitude the speech had. 
 
 \section{Results}
+The program was tested on a few different scenarios, to measure its performance under different conditions, as well as testing the limits of the frameworks used in it. The tests were done in a 4 step process:
+
+Input text into the program and run a sentiment analysis for brands mentioned in it
+Record one of the authors reading the text aloud, and input it into the program
+Compare the sentiment scores of the text and the audio file
+Compare the sentiment scores to the content of the text.
+
+\subsection{Big files}
+The test text used for this test was a long blog post detailing the authors' love for the Coca-Cola soft drink. The sentiment scores for the text itself indicated that the text was both positive and sexy:
+Sexy: 0.42857142857142855 Violent: 0.14285714285714285 Positive: 1.2857142857142858 Negative: 0.07142857142857142
+
+Unfortunately, due to limitations on big files, the output from he speech-to-text API was mostly unintelligble, and very little of the original text survived the conversion. Thus, the results were unusable for any sane comparison.
+
+\subsection{Mixed brands}
+In this test, short texts which mention multiple brands with different sentiments were used. The program was configured to use a small scope when searching for sentiments, 3 words behind and 3 words after the brand name. The audio file input was a failure, since most of the time brand names weren't picked up by the speech-to-text API, so no sentiment analysis could be done on these texts. Even if the brand names were inserted, differing sentiments in the same text meant that the sentiment analysis often gave bad results. For example, the sentence "I love Coke, but I hate my Ford. Although, Coke is really nice to drink while driving, so I guess the Ford isnt completely worthless.", with the score for Coke being 
+Sexy: 1.5, Positive: 1.5, Negative:1.0
+and the score for Ford being
+Negative: 0.5
+when read aloud and input through the program became "I love I need so who is he nice to drink while driving so I guess the board in completely worthless"
 
 Precision vs Recall
 
@@ -184,7 +201,7 @@ Precision vs Recall
   
 \bibitem{history}
   B.H. Juang \& Lawrence R. Rabiner,
-  \emph{Automatic Speech Recognition Ð A Brief History of the Technology Development}.
+  \emph{Automatic Speech Recognition ï¿½ A Brief History of the Technology Development}.
   Georgia Institute of Technology, Atlanta
   Rutgers University and the University of California, Santa Barbara
   
