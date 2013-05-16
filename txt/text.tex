@@ -52,11 +52,6 @@ grove of information, we need to develop effective ways of deriving details from
 -------------------------
 
 Technology is ever moving forward.
-
-We're always looking for new ways to interact with your systems and devices. One of these ways to input information to computers would be by natural speech, which still is quite flimsy and hard for computers to analyse. 
-
-With most of our media still being partly or fully in form of sound, such as web-radio, and television. It is hard to analyse all the information being run around on this media, as the format is not native to our computers and systems. 
-
 We're always looking for new ways to interact with your systems and devices.
 One of these ways to input information to computers would be by natural speech,
 which still is quite flimsy and hard for computers to analyze. 
@@ -94,6 +89,9 @@ A technology that was developed and became more prevalent during mid 80's was th
 
 Today the use of Speech-to-Text can be found in many different fields and applications.
 
+The use of Speech-to-Text can be found in many different fields and applications.
+
+
 As an example, court reporting where everything said in court could be recorded and automatically transcribed by a computer (replacing human labor).
 Hands-free computing, meaning one could write messages and emails by just talking to the computer.
 Automatic calling exchanges at service numbers, such that one could ask the problem and get directed to a expert within the specific field.
@@ -103,19 +101,22 @@ Or on current generation of cellphones as popularized by the Apple iPhone's appl
 
 %% Text about some how speech-to-text works.
 
-\subsection{Text attitude}
-This is quite as it sounds like. Given any text snippet,
-the problem is to analyze and find the general attitude of given text.
-For example the text ``I hate Mondays'' has a very negative attitude,
+\subsection{Sentiment Analysis}
+The \emph{Sentiment Analysis} or \emph{Opinion Mining} problem is that given any snippet of text,
+to find the general attitude of given text on a topic.
+As an very simple example, the text ``I hate Mondays'' has a very negative attitude,
 while the attitude of ``I would not prefer Mondays'' is more towards neutral.
+
+Some early work in the area would be for example to sample reviews of a movie, or restaurant and analyze the polarity of it. Early work on this has been acknowledged to be done by Turney\cite{turney} and Pang\cite{pang}
 
 To be able to get the general opinion or attitude from a text can be very useful for companies that care about their reputation.
 Thus for example finding a lot of complains about something could give great automatic feedback.
 
+With extreme rise of social media platforms such as \emph{Twitter} and \emph{Facebook}, the general interest in sentiment analysis has skyrocketed. Businesses look for solutions to automate the data mining of these platforms, analyzing the general opinion and if case getting negative feedback, to be able to immediately attend to the issues.
 
 \section{Method}
 
-Our solutin to this problem consists of three steps, which are later combined into a single program.
+Our solution to this problem consists of three steps, which are later combined into a single program.
 
 1. Our first step is to work convert speech to text. For this we use Google's speech API.
 
@@ -154,6 +155,7 @@ From here we will get an score, of which we can show the user what kind of attit
 
 \section{Results}
 
+Precision vs Recall
 
 \section{Discussion}
 
@@ -180,8 +182,22 @@ From here we will get an score, of which we can show the user what kind of attit
 Rabiner, Lawrence R.
 \emph{A tutorial on hidden Markov models and selected applications in speech recognition.}
 Proceedings of the IEEE 77.2,
-257-286
+pp. 257-286
 1989.
+
+\bibitem{turney}
+Peter Turney, 
+\emph{Thumbs Up or Thumbs Down? Semantic Orientation Applied to Unsupervised Classification of Reviews},
+ Proceedings of the Association for Computational Linguistics,
+ pp. 417-424
+ 2002.
+
+\bibitem{pang}
+  Bo Pang; Lillian Lee and Shivakumar Vaithyanathan,
+  \emph{Thumbs up? Sentiment Classification using Machine Learning Techniques},
+  Proceedings of the Conference on Empirical Methods in Natural Language Processing (EMNLP).
+  pp. 79-86,
+  2002.
 
 \bibitem{attitude}
   Shanahan, James G., Yan Qu, and Janyce Wiebe, eds.
