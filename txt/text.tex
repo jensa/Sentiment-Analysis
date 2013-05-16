@@ -38,8 +38,17 @@ Petter Salminen <\href{mailto:petsal@kth.se}{petsal@kth.se}>}
 %\listoftables
 \newpage
 \begin{abstract}
-Text goes here...
+In the following project we made a program that does a \emph{Sentiment Analysis} for a given brand on one of the following three things: A live recording using the microphone. A folder containing several audio files. A string inserted into the text box.
 
+This because our client, Jussi at Gavagai, want's us to try out if it is possible to develop a platform that can preform Sentiment Analysis for brands given that the input data is in the form of a audio file, since there is no known platform to preform just this. 
+
+Using an \verb#API# given to us by Jussi, the program grades the given input on the five given levels: Sexy, Violence, Positive, Negative and Uncertainty. 
+
+For example, the given input of ``When I drink coca cola I feel super good and it makes me smile so much yeah coca cola is my favorite drink'' tells us that coca cola in this sentence is seen in a positive way. 
+
+When the speech-to-text \verb#API# works great, our program works like a charm, and is very good for catching the general attitude towards a given brand. But the text to speech \verb#API# we're using is quite crude. This means that in many of our test cases gives it gave us very weird (non logical text) from the given vocal input. When this happens our program will also give very bad results, especially when the brand itself disappears from the text.
+
+For the least we can say that we're very happy with the results. And hope that our client will be happy with our experimental results.
 \end{abstract}
 
 \newpage
@@ -119,7 +128,7 @@ With extreme rise of social media platforms such as \emph{Twitter} and \emph{Fac
 
 Our solution to this problem consists of three steps, which are later combined into a single program.
 
-1. Our first step is to work convert speech to text. For this we use Google's speech API.
+1. Our first step is to work convert speech-to-text. For this we use Google's speech API.
 
 2. Next, we process the converted text to capture brands that the data miner is interested in.
 
