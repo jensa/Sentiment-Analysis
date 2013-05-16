@@ -26,6 +26,11 @@ Erik Hallström  <\href{mailto:erik_hallstrom@icloud.com}{erik\_hallstrom@icloud
 Petter Salminen <\href{mailto:petsal@kth.se}{petsal@kth.se}>}
 
 
+\newcommand*\sepline{%
+  \begin{center}
+    \rule[1ex]{.5\textwidth}{.5pt}
+  \end{center}}
+
 % Kodkommando
 \newcommand{\javafil}[1]{\lstinputlisting{#1}} % #1 = filnamn, #2 = caption
 \newcommand{\ovning}[1]{\section*{Övning #1}}
@@ -194,30 +199,53 @@ The last test was made to ascertain that our program worked at all as intended, 
 
 The results are presented below. First the original text and its sentiment score, and then the processed recording of it being read aloud and the associated sentiment score.
 
-"I love Ford since they make the best cars I have one myself and it is not only very efficient but also quiet and has a lovely design My friend tipped me off about it and Ive been happy with the car ever since"
-Score: Sexy:2.0 Positive:4.0
+\begin{center}
+``I love Ford since they make the best cars I have one myself and it is not only very efficient but also quiet and has a lovely design My friend tipped me off about it and Ive been happy with the car ever since.''
+\end{center}
+\hfill Score: Sexy: 2.0 Positive: 4.0
 
-"I love Ford they make the best cars I have one myself only there any fish in it also quite lovely night my friend to pick me up about it and I've been happy with the car"
-Score: Sexy: 2.0, Positive: 4.0
+\begin{center}
+``I love Ford they make the best cars I have one myself only there any fish in it also quite lovely night my friend to pick me up about it and I've been happy with the car.''
+\end{center}
+\hfill Score: Sexy: 2.0, Positive: 4.0
 
-"My friend just bought a Ford, and I can't say anything about it really. It's a pretty standard car, and I'm unsure about what made him choose it. He's kind of average, so maybe he likes a car that's as mundane as himself."
-Score: Positive: 1.0, Negative: 1.0, Uncertain: 2.0
+\sepline
 
-"my friend just bored and I can send about it it's a pretty standard and I'm unsure about with meetings so maybe like the car and a Nazi"
-Score: Positive: 1.0, Negative: 1.0, Unsure: 2.0
-Note: The sentiment analysis for this snippet was run on the whole text since the word "Ford" was not picked up, so this snippet would probably not be considered in a larger analysis.
+\begin{center}
+``My friend just bought a Ford, and I can't say anything about it really. It's a pretty standard car, and I'm unsure about what made him choose it. He's kind of average, so maybe he likes a car that's as mundane as himself.''
+\end{center}
+\hfill Score: Positive: 1.0, Negative: 1.0, Uncertain: 2.0
 
-"I can't believe that Ford still exists as a company. They make awful cars, and have a terrible history as one of the worst environment crooks among the big auto companies. Don't buy Fords, people!"
-Score: Negative: 2.0
+\begin{center}
+``my friend just bored and I can send about it it's a pretty standard and I'm unsure about with meetings so maybe like the car and a Nazi.''
+\end{center}
+\hfill Score: Positive: 1.0, Negative: 1.0, Unsure: 2.0
 
-I can't believe the Ford still exist the company they make of a car and have a tear as one of the work environment cooks big auto companies don't buy Ford Depot
-No sentiments were picked up by the sentiment analysis
+Note: The sentiment analysis for this snippet was run on the whole text since the word ``Ford'' was not picked up, so this snippet would probably not be considered in a larger analysis.
 
-"Some guy just trashed my Ford and beat me up. He somehow punched right through my windshield, threatened by pull my car tires off and then ran away screaming. This day could not get any worse."
-Score: Violence: 3.0, Uncertain: 1.0
+\sepline
 
-"oMG I just passed by Ford beat me up he somehow right to my wii ready to pull my car tires off and then run away screen this day could not get any books"
-Score: Violence: 1.0, Uncertain: 1.0
+\begin{center}
+``I can't believe that Ford still exists as a company. They make awful cars, and have a terrible history as one of the worst environment crooks among the big auto companies. Don't buy Fords, people!''
+\end{center}
+\hfill Score: Negative: 2.0
+
+\begin{center}
+``I can't believe the Ford still exist the company they make of a car and have a tear as one of the work environment cooks big auto companies don't buy Ford Depot''
+\end{center}
+\hfill No sentiments were picked up by the sentiment analysis
+
+\sepline 
+
+\begin{center}
+``Some guy just trashed my Ford and beat me up. He somehow punched right through my windshield, threatened by pull my car tires off and then ran away screaming. This day could not get any worse.''
+\end{center}
+\hfill Score: Violence: 3.0, Uncertain: 1.0
+
+\begin{center}
+``oMG I just passed by Ford beat me up he somehow right to my wii ready to pull my car tires off and then run away screen this day could not get any books''
+\end{center}
+\hfill Score: Violence: 1.0, Uncertain: 1.0
 
 \section{Discussion}
 The scope of this project is obvious to small to design our own speech recognition algorithm or sentiment analysis algorithm. We had to rely on 3rd party services such as the speech sentiment API from Gavagai and Googles unofficial speech recognition web service. Even though a large international company like Google uses cutting edge technology for their speech recognition, we had major problems recognising some of the words, even when the speaker was alone in a quiet room and spoke at normal speed. Especially recognise the brands them selves showed to be fairly hard. Sometimes only one out of several mentions was recognised, obviously making the end results worse. 
