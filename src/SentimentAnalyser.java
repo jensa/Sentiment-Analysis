@@ -20,8 +20,6 @@ public class SentimentAnalyser {
 	
 	public double[] getSentiment (Utterance u){
 		String cleanString = u.text.replaceAll ("\\#|\\'|\\.|\\!|\\r|\\n|\\r\\n", "");
-		System.out.println ("Clean: "+cleanString);
-		System.out.println ("Original: "+u.text);
 		String sentimentJSON = getSentimentJSON (cleanString);
 		if (sentimentJSON.equals (ERROR)){
 			System.err.println ("ERROR: "+u.text);
