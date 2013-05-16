@@ -170,14 +170,50 @@ The program was tested on a few different scenarios, to measure its performance 
 The test text used for this test was a long blog post detailing the authors' love for the Coca-Cola soft drink. The sentiment scores for the text itself indicated that the text was both positive and sexy:
 Sexy: 0.42857142857142855 Violent: 0.14285714285714285 Positive: 1.2857142857142858 Negative: 0.07142857142857142
 
-Unfortunately, due to limitations on big files, the output from he speech-to-text \verb#API# was mostly unintelligible, and very little of the original text survived the conversion. Thus, the results were unusable for any sane comparison.
+
+Unfortunately, due to limitations on big files, the output from he speech-to-text \verb#API# was mostly unintelligble, and very little of the original text survived the conversion. Thus, the results were unusable for any sane comparison. This finding limited our testing to small files, and hindered testing on podcasts, live streams and other interesting audio sources.
 
 \subsection{Mixed brands}
 In this test, short texts which mention multiple brands with different sentiments were used. The program was configured to use a small scope when searching for sentiments, 3 words behind and 3 words after the brand name. The audio file input was a failure, since most of the time brand names weren't picked up by the speech-to-text \verb#API#, so no sentiment analysis could be done on these texts. Even if the brand names were inserted, differing sentiments in the same text meant that the sentiment analysis often gave bad results. For example, the sentence ``I love Coke, but I hate my Ford. Although, Coke is really nice to drink while driving, so I guess the Ford isn't completely worthless.'', with the score for Coke being 
 Sexy: 1.5, Positive: 1.5, Negative:1.0
 and the score for Ford being
 Negative: 0.5
+
 when read aloud and input through the program became ``I love I need so who is he nice to drink while driving so I guess the board in completely worthless''.
+
+which, aside from seemingly having nothing to do with either Ford or Coca-Cola, gets a general sentiment score of 
+Sexy: 2.0, Positive: 2.0, Negative:2.0
+Three other, similar text snippets were recorded and tried, and produced similar results not possible to compare with the original text snippets.
+
+\subsection{Small snippets, one brand, one sentiment}
+The last test was made to ascertain that our program worked at all as intended, as the examples are idealized and might not be enountered in a real situation. They do, however, overcome the limitations set on our experimental program by the outside services used to power it, and as such serve as an adequate proof of concept. The snippets used are small, they contain only one brand that is mentioned multiple times (Ford), and the whole snippet only contains one sentiment. The scope used was ten words behind, twenty words after.
+
+The results are presented below. First the original text and its sentiment score, and then the processed recording of it being read aloud and the associated sentiment score.
+
+"I love Ford since they make the best cars I have one myself and it is not only very efficient but also quiet and has a lovely design My friend tipped me off about it and Ive been happy with the car ever since"
+Score: Sexy:2.0 Positive:4.0
+
+"I love Ford they make the best cars I have one myself only there any fish in it also quite lovely night my friend to pick me up about it and I've been happy with the car"
+Score: Sexy: 2.0, Positive: 4.0
+
+"My friend just bought a Ford, and I can't say anything about it really. It's a pretty standard car, and I'm unsure about what made him choose it. He's kind of average, so maybe he likes a car that's as mundane as himself."
+Score: Positive: 1.0, Negative: 1.0, Uncertain: 2.0
+
+"my friend just bored and I can send about it it's a pretty standard and I'm unsure about with meetings so maybe like the car and a Nazi"
+Score: Positive: 1.0, Negative: 1.0, Unsure: 2.0
+Note: The sentiment analysis for this snippet was run on the whole text since the word "Ford" was not picked up, so this snippet would probably not be considered in a larger analysis.
+
+"I can't believe that Ford still exists as a company. They make awful cars, and have a terrible history as one of the worst environment crooks among the big auto companies. Don't buy Fords, people!"
+Score: Negative: 2.0
+
+I can't believe the Ford still exist the company they make of a car and have a tear as one of the work environment cooks big auto companies don't buy Ford Depot
+No sentiments were picked up by the sentiment analysis
+
+"Some guy just trashed my Ford and beat me up. He somehow punched right through my windshield, threatened by pull my car tires off and then ran away screaming. This day could not get any worse."
+Score: Violence: 3.0, Uncertain: 1.0
+
+"oMG I just passed by Ford beat me up he somehow right to my wii ready to pull my car tires off and then run away screen this day could not get any books"
+Score: Violence: 1.0, Uncertain: 1.0
 
 \section{Discussion}
 
