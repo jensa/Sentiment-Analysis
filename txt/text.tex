@@ -1,4 +1,4 @@
-\documentclass[a4paper,11pt,twoside]{ltxdoc}
+\documentclass[a4paper,12pt,twoside]{ltxdoc}
 
 %\usepackage[utf8]{inputenc} % not used, as I compile with Xelatex
 \usepackage[T1]{fontenc}
@@ -43,16 +43,34 @@ Text goes here...
 
 \newpage
 \section{Background}
+Today we find ourselves flooded with information. This information contains great value to companies, as they are
+able to draw on consumer preferences and adjust their product lines accordingly. And yet, information may be difficult
+to process for several reasons. One reason is the sheer amount of it. Another aspect of information that may make it difficult
+to process is its format. The spoken word can be far more difficult to process that a written document. To capitalize on this treasure
+grove of information, we need to develop effective ways of deriving details from the spoken word and processing them.
+
+-------------------------
+
 Technology is ever moving forward.
+<<<<<<< HEAD
 We're always looking for new ways to interact with your systems and devices. One of these ways to input information to computers would be by natural speech, which still is quite flimsy and hard for computers to analyse. 
 
 With most of our media still being partly or fully in form of sound, such as web-radio, and television. It is hard to analyse all the information being run around on this media, as the format is not native to our computers and systems. 
+=======
+We're always looking for new ways to interact with your systems and devices.
+One of these ways to input information to computers would be by natural speech,
+which still is quite flimsy and hard for computers to analyze. 
 
-With this is mind, our mission is to make an experimental program that can transcribe speech and analyse it, looking for certain trends.
-For example, this can be used to recognise branding recognition from a audio stream, and then analyse the context to find an opinion about the brand.
+With most of our media still being partly or fully in form of sound, such  as web-radio, and television.
+It is hard to analyze all the information being run around on this media, as the format is not
+native to our computers and systems. 
+>>>>>>> b759c59dc85c9845d29481002c653357160016b6
+
+With this is mind, our mission is to make an experimental program that can transcribe speech and analyze it, looking for certain trends.
+For example, this can be used to recognize branding recognition from a audio stream, and then analyze the context to find an opinion about the brand.
 A complete solution could be very interesting for companies who care to know how their brand is doing ``out there'' in the world.
 
-To be able to find automatically information in the wast sea of digital audio/video media is a very challenging problem
+To be able to find automatically information in the vast sea of digital audio/video media is a very challenging problem
 because the information itself is very hard for computers to read. 
 
 
@@ -75,19 +93,19 @@ These typewriters was suppose to be used extensively by certain persons, it thus
 
 Today the use of Speech-to-Text can be found in many different fields and applications.
 
-As an example, court reporting where everything said in court could be recorded and automatically transcribed by a computer (replacing human labour).
+As an example, court reporting where everything said in court could be recorded and automatically transcribed by a computer (replacing human labor).
 Hands-free computing, meaning one could write messages and emails by just talking to the computer.
 Automatic calling exchanges at service numbers,
 such that one could ask the problem and get directed to a expert within the specific field.
 
-Or on current generation of cellphones as popularised by the Apple iPhone's application Siri
+Or on current generation of cellphones as popularized by the Apple iPhone's application Siri
 - supplying an intelligent personal assistant and knowledge navigator that you can ask questions in natural language and get an answer. 
 
-
+%% Text about some how speech-to-text works.
 
 \subsection{Text attitude}
 This is quite as it sounds like. Given any text snippet,
-the problem is to analyse and find the general attitude of given text.
+the problem is to analyze and find the general attitude of given text.
 For example the text ``I hate Mondays'' has a very negative attitude,
 while the attitude of ``I would not prefer Mondays'' is more towards neutral.
 
@@ -96,12 +114,41 @@ Thus for example finding a lot of complains about something could give great aut
 
 
 \section{Method}
-Our solution for this problem consists of not trying to invent the wheel, but trying to use different
-more-or-less complete solutions for the different steps and stitch then together into our own framework.
+
+Our solutin to this problem consists of three steps, which are later combined into a single program.
+
+1. Our first step is to work convert speech to text. For this we use Google's speech API.
+
+2. Next, we process the converted text to capture brands that the data miner is interested in.
+
+3. Finally, we process the expressions related to these brands to detect sentiments, using Gavagai's API.
+
+Google's speech API is used widely across its product range, from web search to translate to Android voice commands.
+Provided with an audio file in FLAC format, the API returns a JSON object representing the transcribed audio. The JSON object
+can then be parsed to retrieve the text string that corresponds to the spoken message. Google's speech API allows for a number
+of different configuration settings, including language and audio frequency of the supplied file.
+
+In our project, audio file input is extended by letting the user of the program record an audio snippet in real time and
+then submit it for processing.
+
+In the second step, mentions of brands are elicited from the transcribed audio. In our program, the user supplies the name
+of a brand that he or she wants to watch for. The user also chooses how many words before an after the brand name should
+be included in the analysis. Thus, there is a precision-vs-recall tradeoff here. Choosing a large number of words to include
+in the processing increase the scope of the search, but might lower the precision as unrelated adjectives may be grouped
+with the brand mention.
+
+In the third step, we provide cardinal scores of the audio according to a number of criteria. Gavagai's API lets us
+evaluate a text string based on a number of parameters. We can look for the sentiments described as positive, negative, sexy, violent,
+and uncertain. The program then presents the user with the data tabulated as shown in the figure. %% bild här
+
+--------------------
+
+Our solution to this problem consists not of trying to reinvent the wheel, but of employing different
+solutions that are more-or-less complete throughout the different stages, and then stitching them together.
 
 First and foremost we have an audio file, which we will send to Google speech API, which will give us a fair caption of the given sound segment.
 
-This text we can then search for given brands or other point of interests, and then send this text for textual attitude analysing using an web API provided by our mentor at Gavagai.
+This text we can then search for given brands or other point of interests, and then send this text for textual attitude analyzing using an web API provided by our mentor at Gavagai.
 
 From here we will get an score, of which we can show the user what kind of attitude the speech had. 
 
@@ -128,13 +175,20 @@ From here we will get an score, of which we can show the user what kind of attit
   2nd Edition,
   1994.
 
-\bibitem{example2}
-  Leslie Lamport,
-  \emph{\LaTeX: A Document Preparation System}.
-  Addison Wesley, Massachusetts,
-  2nd Edition,
-  1994.
+%% This thing seems to be THE SHIT to cite, has 17k of them on google scholar.
+\bibitem{speech}
+Rabiner, Lawrence R.
+\emph{A tutorial on hidden Markov models and selected applications in speech recognition.}
+Proceedings of the IEEE 77.2,
+257-286
+1989.
 
+\bibitem{attitude}
+  Shanahan, James G., Yan Qu, and Janyce Wiebe, eds.
+  \emph{Computing attitude and affect in text: theory and applications.}
+  Springer, 
+  Vol. 20.
+  2006.
 
 \end{thebibliography}
 
