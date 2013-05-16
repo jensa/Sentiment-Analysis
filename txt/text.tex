@@ -102,15 +102,18 @@ Or on current generation of cellphones as popularized by the Apple iPhone's appl
 
 %% Text about some how speech-to-text works.
 
-\subsection{Text attitude}
-This is quite as it sounds like. Given any text snippet,
-the problem is to analyze and find the general attitude of given text.
-For example the text ``I hate Mondays'' has a very negative attitude,
+\subsection{Sentiment Analysis}
+The \emph{Sentiment Analysis} or \emph{Opinion Mining} problem is that given any snippet of text,
+to find the general attitude of given text on a topic.
+As an very simple example, the text ``I hate Mondays'' has a very negative attitude,
 while the attitude of ``I would not prefer Mondays'' is more towards neutral.
+
+Some early work in the area would be for example to sample reviews of a movie, or restaurant and analyze the polarity of it. Early work on this has been acknowledged to be done by Turney\cite{turney} and Pang\cite{pang}
 
 To be able to get the general opinion or attitude from a text can be very useful for companies that care about their reputation.
 Thus for example finding a lot of complains about something could give great automatic feedback.
 
+With extreme rise of social media platforms such as \emph{Twitter} and \emph{Facebook}, the general interest in sentiment analysis has skyrocketed. Businesses look for solutions to automate the data mining of these platforms, analyzing the general opinion and if case getting negative feedback, to be able to immediately attend to the issues.
 
 \section{Method}
 
@@ -179,8 +182,22 @@ From here we will get an score, of which we can show the user what kind of attit
 Rabiner, Lawrence R.
 \emph{A tutorial on hidden Markov models and selected applications in speech recognition.}
 Proceedings of the IEEE 77.2,
-257-286
+pp. 257-286
 1989.
+
+\bibitem{turney}
+Peter Turney, 
+\emph{Thumbs Up or Thumbs Down? Semantic Orientation Applied to Unsupervised Classification of Reviews},
+ Proceedings of the Association for Computational Linguistics,
+ pp. 417-424
+ 2002.
+
+\bibitem{pang}
+  Bo Pang; Lillian Lee and Shivakumar Vaithyanathan,
+  \emph{Thumbs up? Sentiment Classification using Machine Learning Techniques},
+  Proceedings of the Conference on Empirical Methods in Natural Language Processing (EMNLP).
+  pp. 79-86,
+  2002.
 
 \bibitem{attitude}
   Shanahan, James G., Yan Qu, and Janyce Wiebe, eds.
