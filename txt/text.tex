@@ -78,7 +78,7 @@ because the information itself is very hard for computers to read.
 \subsection{Speech-to-Text}
 \emph{Speech-to-text}, or more generally \emph{Computer Speech Recognition} is the general problem in computer science where the computer has to translate spoken words into text.
 
-The first real attempt to do speech recognition was made during the 50's and the system could only handle a small subset of speech, namely digit recognition. In 1952 reasearchers at Bell Laboratories built a speech recognition system that only could recognize digits by a single speaker in a quiet room. The thechnology of  the system was based on the theory of the acoustics of speech and the machine triggered on the sound of the vovels in the different digits.
+The first real attempt to do speech recognition was made during the 50's and the system could only handle a small subset of speech, namely digit recognition. In 1952 researchers at Bell Laboratories built a speech recognition system that only could recognize digits by a single speaker in a quiet room. The thechnology of  the system was based on the theory of the acoustics of speech and the machine triggered on the sound of the vovels in the different digits.
 
 Similar work was made by researchers at RCA Laboratories and at MIT Lincoln Lab during the 50's. The research teams at these two institutions built speech recognitions systems that could classify vovels that a test person spoke.
 
@@ -88,14 +88,15 @@ During the 70's the first speech recognition system that could handle spoken wor
 
 A new technology based on the n-gram language model, was introduced in the beginning of the 80's and have been very important to speech recognition systems ever since. One obvious task for a speech recognizer is to use it as a automatic typewriter; a user speaks words and sentences that should be written to a document. Since there is an underlying structure and grammar in all form of language, not all letter orderings and word orderings are equally probable. In fact, some orderings are even wrong, i.e the words are misspelled or sentences are gramatically incorrect. The n-gram model looks at a sequence of words and tells how probable it is. That will help when doing the word recognition, we will get a prior for each word and thus use a M.A.P estimation for what the next word ought to be.
 
-These typewriters was suppose to be used extensively by certain persons, it thus allowed for individual training of the system. This was not the case for another application of speech recognition, namely routing phonecalls
+These typewriters was suppose to be used extensively by certain persons, thus they allowed for individual training of the system. This was not the case for another application of speech recognition, namely routing phonecalls. Usually when calling support centers there is a need for routing phone-calls to the correct expert or department. This require a large workforce of operators and if it could be automated the companies could save a lot of money. These systems where to be used on demand by millions of people, thus they needed to generalize very well among different voices and regional accents. The utilisation of this technology started in the early 90's and today such systems are annually routing billions of phone calls around the world. 
+
+A technology that was developed and became more prevalent during mid 80's was the hidden Markov model (HMM). It quickly became the best and most preferred method for speech recognition. In a hidden Markov model, state and observation are key concepts. States are what the actual quantity being estimated is equal to. The obvious choice is words, but there are modified models and other quantities could be choosen to represent the states. The HMM models the state transitions between the words based on uncertain measurements and the probability of a new word given the previous word. The state transitions have certain probabilities and some transitions are more probable than others that might result in bad grammar or wierd sentences.  The measurements are the speech itself 
 
 Today the use of Speech-to-Text can be found in many different fields and applications.
 
 As an example, court reporting where everything said in court could be recorded and automatically transcribed by a computer (replacing human labor).
 Hands-free computing, meaning one could write messages and emails by just talking to the computer.
-Automatic calling exchanges at service numbers,
-such that one could ask the problem and get directed to a expert within the specific field.
+Automatic calling exchanges at service numbers, such that one could ask the problem and get directed to a expert within the specific field.
 
 Or on current generation of cellphones as popularized by the Apple iPhone's application Siri
 - supplying an intelligent personal assistant and knowledge navigator that you can ask questions in natural language and get an answer. 
